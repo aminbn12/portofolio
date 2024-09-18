@@ -97,7 +97,7 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Date de naissance:</strong> <span>19 Avril 1991</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Site Web:</strong> <a href="www.aminbn12.github.io/portofolio"><span>www.aminbn12.github.io/portofolio</span></li></a>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Site Web:</strong> <a href="aminbn12.github.io/portofolio"><span>aminbn12.github.io/portofolio</span></li></a>
                   <li><i class="bi bi-chevron-right"></i> <strong>Téléphone:</strong> <span>+212708212230</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Ville:</strong> <span>Rabat</span></li>
                 </ul>
