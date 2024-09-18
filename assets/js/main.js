@@ -204,32 +204,38 @@
     }
   });
   // Ajout de l'écouteur pour le formulaire de contact
-document.querySelector('.php-email-form').addEventListener('submit', async function(event) {
-  event.preventDefault(); // Empêche la soumission par défaut du formulaire
-
-  const form = event.target;
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: formData,
-      headers: {
-        'Accept': 'application/json'
+  document.querySelector('.php-email-form').addEventListener('submit', async function(event) {
+    event.preventDefault(); // Empêche le comportement par défaut de soumission du formulaire
+  
+    const form = event.target;
+    const formData = new FormData(form);
+  
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        if (data.ok) {
+          // Affiche un message de confirmation sans rediriger
+          document.querySelector('.sent-message').style.display = 'block';
+          form.reset(); // Réinitialise le formulaire après envoi
+        } else {
+          document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
+        }
+      } else {
+        document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
       }
-    });
-
-    if (response.ok) {
-      // Redirige vers la section #hero après l'envoi réussi du formulaire
-      window.location.href = "#hero";
-    } else {
-      const data = await response.json();
-      document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
+    } catch (error) {
+      document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
     }
-  } catch (error) {
-    document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
-  }
-});
+  });
+  
 
 
   /**
