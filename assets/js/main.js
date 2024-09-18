@@ -209,6 +209,11 @@
   
     const form = event.target;
     const formData = new FormData(form);
+    
+    // Affiche le message de chargement avant l'envoi
+    document.querySelector('.loading').style.display = 'block';
+    document.querySelector('.sent-message').style.display = 'none'; // Cache le message de confirmation s'il est déjà affiché
+    document.querySelector('.error-message').style.display = 'none'; // Cache le message d'erreur s'il est déjà affiché
   
     try {
       const response = await fetch(form.action, {
@@ -219,19 +224,29 @@
         }
       });
   
+      // Cache le message de chargement après la réponse
+      document.querySelector('.loading').style.display = 'none';
+  
       if (response.ok) {
         const data = await response.json();
         if (data.ok) {
-          // Affiche un message de confirmation sans rediriger
+          // Affiche le message de confirmation après l'envoi réussi
           document.querySelector('.sent-message').style.display = 'block';
           form.reset(); // Réinitialise le formulaire après envoi
         } else {
+          // Affiche un message d'erreur si quelque chose ne va pas
+          document.querySelector('.error-message').style.display = 'block';
           document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
         }
       } else {
+        // Affiche un message d'erreur si la réponse n'est pas ok
+        document.querySelector('.error-message').style.display = 'block';
         document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
       }
     } catch (error) {
+      // Cache le message de chargement et affiche une erreur en cas d'échec de la requête
+      document.querySelector('.loading').style.display = 'none';
+      document.querySelector('.error-message').style.display = 'block';
       document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
     }
   });
