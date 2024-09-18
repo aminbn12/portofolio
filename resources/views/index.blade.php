@@ -97,7 +97,7 @@
               <div class="col-lg-6">
                 <ul>
                   <li><i class="bi bi-chevron-right"></i> <strong>Date de naissance:</strong> <span>19 Avril 1991</span></li>
-                  <li><i class="bi bi-chevron-right"></i> <strong>Site Web:</strong> <span>www.mon-portfolio.com</span></li>
+                  <li><i class="bi bi-chevron-right"></i> <strong>Site Web:</strong> <a href="www.aminbn12.github.io/portofolio"><span>www.aminbn12.github.io/portofolio</span></li></a>
                   <li><i class="bi bi-chevron-right"></i> <strong>Téléphone:</strong> <span>+212708212230</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Ville:</strong> <span>Rabat</span></li>
                 </ul>
@@ -343,7 +343,7 @@
           </div>
 
           <div class="col-lg-8">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+            <form action="https://formspree.io/f/mjkbqbrjp" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
               <div class="row gy-4">
 
                 <div class="col-md-6">
