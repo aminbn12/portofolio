@@ -203,6 +203,34 @@
       }
     }
   });
+  // Ajout de l'écouteur pour le formulaire de contact
+document.querySelector('.php-email-form').addEventListener('submit', async function(event) {
+  event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+  const form = event.target;
+  const formData = new FormData(form);
+
+  try {
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+
+    if (response.ok) {
+      // Redirige vers la section #hero après l'envoi réussi du formulaire
+      window.location.href = "#hero";
+    } else {
+      const data = await response.json();
+      document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
+    }
+  } catch (error) {
+    document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
+  }
+});
+
 
   /**
    * Navmenu Scrollspy
