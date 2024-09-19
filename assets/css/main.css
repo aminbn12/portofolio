@@ -1439,6 +1439,16 @@ section,
   color: var(--accent-color);
 }
 
+.language-switcher {
+  display: flex;
+  gap: 10px;
+}
+
+.language-switcher i {
+  font-size: 24px;
+  cursor: pointer;
+}
+
 /*--------------------------------------------------------------
 # Starter Section Section
 --------------------------------------------------------------*/

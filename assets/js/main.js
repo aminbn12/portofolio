@@ -242,26 +242,39 @@
 
 
   // Language Switcher
-
-  async function changeLanguage(lang) {
+ // Fonction pour changer la langue
+async function changeLanguage(lang) {
+  try {
     const response = await fetch(`lang/${lang}.json`);
     const translations = await response.json();
-  
+
     document.querySelectorAll('[data-translate]').forEach(element => {
       const key = element.getAttribute('data-translate');
       element.textContent = translations[key];
     });
-  
-    // Stocker la langue sélectionnée dans localStorage pour l'utiliser lors des futures visites
+
+    // Stocker la langue dans localStorage
     localStorage.setItem('lang', lang);
+  } catch (error) {
+    console.error('Error loading translation file:', error);
   }
-  
-  // Appliquer la langue sauvegardée à chaque chargement de la page
-  document.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem('lang') || 'fr';
-    changeLanguage(savedLang);
-  });
-  
+}
+
+// Ajouter les écouteurs d'événements pour les drapeaux
+document.getElementById('lang-en').addEventListener('click', () => {
+  changeLanguage('en');
+});
+
+document.getElementById('lang-fr').addEventListener('click', () => {
+  changeLanguage('fr');
+});
+
+// Charger la langue sauvegardée lors du chargement de la page
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('lang') || 'fr'; // 'fr' est la langue par défaut
+  changeLanguage(savedLang);
+});
+
   
   
   /**
