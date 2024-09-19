@@ -1466,15 +1466,27 @@ section,
   align-items: center;
   height: auto;
   padding: 50px 0;
-  background-color: #282828;
   color: white;
+  text-align: center;
 }
 
 #game-section canvas {
+  width: 100%;
+  max-width: 600px;  /* Limite la taille maximale du canvas */
+  height: auto;
   border: 2px solid #FFF;
   background-color: black;
   margin-top: 20px;
 }
+
+@media (max-width: 600px) {
+  #game-section canvas {
+      width: 100%;
+      height: auto;
+  }
+}
+
+
 
 
 

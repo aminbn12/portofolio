@@ -33,7 +33,7 @@
       width : 10,
       height : 100,
       score : 0,
-      color : "WHITE"
+      color : "#0d6efd"
   }
   
   // Raquette de l'ordinateur
@@ -43,7 +43,7 @@
       width : 10,
       height : 100,
       score : 0,
-      color : "WHITE"
+      color : "#0d6efd"
   }
   
   // Filet
@@ -150,6 +150,15 @@
           ball.speed += 0.1;
       }
   }
+  function resizeCanvas() {
+    const aspectRatio = 600 / 400;  // Ratio d'aspect du canvas
+    canvas.width = window.innerWidth > 600 ? 600 : window.innerWidth - 20;
+    canvas.height = canvas.width / aspectRatio;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
+
   
   // Fonction de rendu graphique
   function render(){
