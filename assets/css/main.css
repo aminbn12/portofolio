@@ -1449,7 +1449,7 @@ section,
 
 .language-switcher i, 
 .language-switcher img { /* Applique les mêmes styles aux icônes et images */
-  font-size: 24px;     /* Taille des icônes */
+  font-size: 19px;     /* Taille des icônes */
   cursor: pointer;     /* Change le curseur en pointeur */
   transition: transform 0.2s ease-in-out; /* Ajoute une animation de transformation */
 }
@@ -1457,6 +1457,18 @@ section,
 .language-switcher i:active, 
 .language-switcher img:active {
   transform: scale(1.2); /* Agrandit légèrement l'icône au clic */
+}
+
+.game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+}
+
+canvas {
+  background-color: #000; /* Fond noir pour le jeu */
+  border: 2px solid #0563bb;
 }
 
 
