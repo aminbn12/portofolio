@@ -209,10 +209,7 @@
   
     const form = event.target;
     const formData = new FormData(form);
-
-      // Affiche le message de chargement avant l'envoi
-
- 
+  
     try {
       const response = await fetch(form.action, {
         method: form.method,
@@ -238,6 +235,7 @@
       document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
     }
   });
+  
   
 
 
