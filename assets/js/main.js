@@ -239,10 +239,28 @@
       window.open(this.href, '_blank');  // Ouvre le lien dans un nouvel onglet
     });
   });
-  
-  
 
 
+  // Language Switcher
+
+  async function changeLanguage(lang) {
+    const response = await fetch(`lang/${lang}.json`);
+    const translations = await response.json();
+
+    document.querySelectorAll('[data-translate]').forEach(element => {
+      const key = element.getAttribute('data-translate');
+      element.textContent = translations[key];
+    });
+
+    localStorage.setItem('lang', lang);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('lang') || 'fr';
+    changeLanguage(savedLang);
+  });
+  
+  
   /**
    * Navmenu Scrollspy
    */
