@@ -51,8 +51,9 @@
     
 
     <div class="language-switcher">
-      <a href="#" onclick="changeLanguage('en')">English</a> | 
-      <a href="#" onclick="changeLanguage('fr')">Français</a>
+      <a href="#" onclick="changeLanguage('en'); event.preventDefault();">English</a> 
+      <a href="#" onclick="changeLanguage('fr'); event.preventDefault();">Français</a>
+
     </div>
 
   </header>

@@ -246,19 +246,22 @@
   async function changeLanguage(lang) {
     const response = await fetch(`lang/${lang}.json`);
     const translations = await response.json();
-
+  
     document.querySelectorAll('[data-translate]').forEach(element => {
       const key = element.getAttribute('data-translate');
       element.textContent = translations[key];
     });
-
+  
+    // Stocker la langue sélectionnée dans localStorage pour l'utiliser lors des futures visites
     localStorage.setItem('lang', lang);
   }
-
+  
+  // Appliquer la langue sauvegardée à chaque chargement de la page
   document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('lang') || 'fr';
     changeLanguage(savedLang);
   });
+  
   
   
   /**
