@@ -1459,22 +1459,23 @@ section,
   transform: scale(1.2); /* Agrandit légèrement l'icône au clic */
 }
 
-.game-container {
+#game-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  padding: 50px 0;
+  background-color: #282828;
+  color: white;
+  text-align: center;
 }
 
-canvas {
-  background-color: #000;
+#game-section canvas {
+  background: #000;
   border: 2px solid #fff;
+  margin-top: 20px;
 }
 
-#score {
-  margin-bottom: 10px; /* Espace entre le score et le canvas */
-}
 
 
 /*--------------------------------------------------------------
