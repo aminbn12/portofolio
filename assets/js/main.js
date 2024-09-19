@@ -211,10 +211,8 @@
     const formData = new FormData(form);
 
       // Affiche le message de chargement avant l'envoi
-  document.querySelector('.loading').style.display = 'block';
-  document.querySelector('.sent-message').style.display = 'none'; // Cache le message de confirmation s'il est déjà affiché
-  document.querySelector('.error-message').style.display = 'none'; // Cache le message d'erreur s'il est déjà affiché
-  
+
+ 
     try {
       const response = await fetch(form.action, {
         method: form.method,
