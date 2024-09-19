@@ -1461,14 +1461,19 @@ section,
 
 .game-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Prend toute la hauteur de la fenêtre */
+  height: 100vh;
 }
 
 canvas {
-  background-color: #000; /* Fond noir pour le jeu */
-  border: 2px solid #0563bb;
+  background-color: #000;
+  border: 2px solid #fff;
+}
+
+#score {
+  margin-bottom: 10px; /* Espace entre le score et le canvas */
 }
 
 

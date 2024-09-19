@@ -274,95 +274,117 @@
       changeLanguage(savedLang);
     });
 
+    
   // code de jeu
 
-    const canvas = document.getElementById('pong');
-const context = canvas.getContext('2d');
-
-// Créer les raquettes et la balle
-const paddleWidth = 10, paddleHeight = 100;
-const ballRadius = 10;
-let player = { x: 0, y: canvas.height / 2 - paddleHeight / 2, width: paddleWidth, height: paddleHeight, dy: 0 };
-let computer = { x: canvas.width - paddleWidth, y: canvas.height / 2 - paddleHeight / 2, width: paddleWidth, height: paddleHeight };
-let ball = { x: canvas.width / 2, y: canvas.height / 2, radius: ballRadius, speed: 5, dx: 3, dy: 3 };
-
-// Contrôles du joueur
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowUp') player.dy = -5;
-  else if (e.key === 'ArrowDown') player.dy = 5;
-});
-
-document.addEventListener('keyup', (e) => {
-  if (e.key === 'ArrowUp' || e.key === 'ArrowDown') player.dy = 0;
-});
-
-// Dessiner les objets
-function drawRect(x, y, w, h, color) {
-  context.fillStyle = color;
-  context.fillRect(x, y, w, h);
-}
-
-function drawCircle(x, y, r, color) {
-  context.fillStyle = color;
-  context.beginPath();
-  context.arc(x, y, r, 0, Math.PI * 2);
-  context.closePath();
-  context.fill();
-}
-
-// Détection de collision
-function collision(paddle, ball) {
-  return ball.x < paddle.x + paddle.width && ball.x + ball.radius > paddle.x &&
-         ball.y < paddle.y + paddle.height && ball.y + ball.radius > paddle.y;
-}
-
-// Mettre à jour la position des objets
-function update() {
-  player.y += player.dy;
-  ball.x += ball.dx;
-  ball.y += ball.dy;
-
-  // Limites pour le joueur
-  if (player.y < 0) player.y = 0;
-  if (player.y + paddleHeight > canvas.height) player.y = canvas.height - paddleHeight;
-
-  // Collision avec le haut et le bas pour la balle
-  if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
-    ball.dy *= -1; // Change de direction
+  const canvas = document.getElementById('pong');
+  const context = canvas.getContext('2d');
+  
+  // Créer les raquettes et la balle
+  const paddleWidth = 10, paddleHeight = 100;
+  const ballRadius = 10;
+  let playerScore = 0;
+  let computerScore = 0;
+  
+  let player = { x: 0, y: canvas.height / 2 - paddleHeight / 2, width: paddleWidth, height: paddleHeight };
+  let computer = { x: canvas.width - paddleWidth, y: canvas.height / 2 - paddleHeight / 2, width: paddleWidth, height: paddleHeight };
+  let ball = { x: canvas.width / 2, y: canvas.height / 2, radius: ballRadius, speed: 5, dx: 3, dy: 3 };
+  
+  // Contrôle du joueur avec la souris
+  canvas.addEventListener('mousemove', (event) => {
+    const canvasPosition = canvas.getBoundingClientRect();
+    player.y = event.clientY - canvasPosition.top - paddleHeight / 2;
+  
+    // Limiter le joueur à l'intérieur du canvas
+    if (player.y < 0) player.y = 0;
+    if (player.y + paddleHeight > canvas.height) player.y = canvas.height - paddleHeight;
+  });
+  
+  // Dessiner les objets
+  function drawRect(x, y, w, h, color) {
+    context.fillStyle = color;
+    context.fillRect(x, y, w, h);
   }
-
-  // Détection de collision avec le joueur et l'ordinateur
-  if (collision(player, ball)) {
-    ball.dx *= -1; // Inverse la direction de la balle
+  
+  function drawCircle(x, y, r, color) {
+    context.fillStyle = color;
+    context.beginPath();
+    context.arc(x, y, r, 0, Math.PI * 2);
+    context.closePath();
+    context.fill();
   }
-
-  // Déplacement simple de l'ordinateur
-  computer.y = ball.y - paddleHeight / 2;
-
-  // Reset de la balle lorsqu'elle sort
-  if (ball.x + ball.radius > canvas.width || ball.x - ball.radius < 0) {
+  
+  // Mettre à jour le score
+  function updateScore() {
+    document.getElementById('score').innerText = `Joueur: ${playerScore} | Ordinateur: ${computerScore}`;
+  }
+  
+  // Détection de collision
+  function collision(paddle, ball) {
+    return ball.x < paddle.x + paddle.width && ball.x + ball.radius > paddle.x &&
+           ball.y < paddle.y + paddle.height && ball.y + ball.radius > paddle.y;
+  }
+  
+  // Mettre à jour la position des objets
+  function update() {
+    ball.x += ball.dx;
+    ball.y += ball.dy;
+  
+    // Collision avec le haut et le bas du canvas pour la balle
+    if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) {
+      ball.dy *= -1; // Inverse la direction verticale
+    }
+  
+    // Collision avec les raquettes
+    if (collision(player, ball)) {
+      ball.dx *= -1; // Inverse la direction horizontale
+    }
+    if (collision(computer, ball)) {
+      ball.dx *= -1; // Inverse la direction horizontale
+    }
+  
+    // Déplacement de l'ordinateur (AI basique)
+    computer.y = ball.y - paddleHeight / 2;
+  
+    // Si la balle sort du côté de l'ordinateur
+    if (ball.x + ball.radius > canvas.width) {
+      playerScore++;
+      resetBall();
+      updateScore();
+    }
+  
+    // Si la balle sort du côté du joueur
+    if (ball.x - ball.radius < 0) {
+      computerScore++;
+      resetBall();
+      updateScore();
+    }
+  }
+  
+  // Réinitialiser la balle au centre
+  function resetBall() {
     ball.x = canvas.width / 2;
     ball.y = canvas.height / 2;
     ball.dx *= -1; // Change la direction
   }
-}
-
-// Dessiner tous les éléments
-function draw() {
-  drawRect(0, 0, canvas.width, canvas.height, '#000'); // Fond noir
-  drawRect(player.x, player.y, player.width, player.height, '#fff'); // Joueur
-  drawRect(computer.x, computer.y, computer.width, computer.height, '#fff'); // Ordinateur
-  drawCircle(ball.x, ball.y, ball.radius, '#fff'); // Balle
-}
-
-// Boucle du jeu
-function gameLoop() {
-  update();
-  draw();
-  requestAnimationFrame(gameLoop);
-}
-
-gameLoop(); // Démarrer le jeu
+  
+  // Dessiner tous les éléments
+  function draw() {
+    drawRect(0, 0, canvas.width, canvas.height, '#000'); // Fond noir
+    drawRect(player.x, player.y, player.width, player.height, '#fff'); // Joueur
+    drawRect(computer.x, computer.y, computer.width, computer.height, '#fff'); // Ordinateur
+    drawCircle(ball.x, ball.y, ball.radius, '#fff'); // Balle
+  }
+  
+  // Boucle du jeu
+  function gameLoop() {
+    update();
+    draw();
+    requestAnimationFrame(gameLoop);
+  }
+  
+  gameLoop(); // Démarrer le jeu
+  
 
 
   
