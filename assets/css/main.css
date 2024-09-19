@@ -1464,15 +1464,15 @@ section,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: auto;
   padding: 50px 0;
   background-color: #282828;
   color: white;
-  text-align: center;
 }
 
 #game-section canvas {
-  background: #000;
-  border: 2px solid #fff;
+  border: 2px solid #FFF;
+  background-color: black;
   margin-top: 20px;
 }
 
