@@ -217,13 +217,12 @@
         const data = await response.json();
         if (data.ok) {
           // Affiche un message de confirmation sans rediriger
-          document.querySelector('.sent-message').style.display = 'block';
-          form.reset(); // Réinitialise le formulaire après envoi
-          
-          // Cache le message après 3 secondes
+          document.querySelector('.sent-message').style.display = 'block'; // Affiche le message
           setTimeout(() => {
-            sentMessage.style.display = 'none';
+            document.querySelector('.sent-message').style.display = 'none'; // Cache le message après 5 secondes
           }, 5000);
+          
+        
         } else {
           document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
         }
