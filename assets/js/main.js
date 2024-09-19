@@ -217,8 +217,14 @@
         const data = await response.json();
         if (data.ok) {
           // Affiche un message de confirmation sans rediriger
-          document.querySelector('.sent-message').style.display = 'block';
-          form.reset(); // Réinitialise le formulaire après envoi
+          const sentMessage = document.querySelector('.sent-message');
+          sentMessage.style.display = 'block';
+  
+          // Cache le message après 3 secondes
+          setTimeout(() => {
+            sentMessage.style.display = 'none';
+          }, 3000);
+          
         } else {
           document.querySelector('.error-message').textContent = "Une erreur est survenue lors de l'envoi du message.";
         }
@@ -229,6 +235,7 @@
       document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
     }
   });
+
   document.querySelectorAll('.social-links a').forEach(link => {
     link.addEventListener('click', function(event) {
       event.preventDefault();  // Empêche l'action par défaut
