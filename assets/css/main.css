@@ -1440,14 +1440,25 @@ section,
 }
 
 .language-switcher {
-  display: flex;
-  gap: 10px;
+  position: absolute; /* Place les icônes de façon absolue */
+  top: 10px;          /* Distance depuis le haut */
+  left: 10px;         /* Distance depuis la gauche */
+  display: flex;      /* Aligne les icônes horizontalement */
+  gap: 10px;          /* Espace entre les icônes */
 }
 
-.language-switcher i {
-  font-size: 24px;
-  cursor: pointer;
+.language-switcher i, 
+.language-switcher img { /* Applique les mêmes styles aux icônes et images */
+  font-size: 24px;     /* Taille des icônes */
+  cursor: pointer;     /* Change le curseur en pointeur */
+  transition: transform 0.2s ease-in-out; /* Ajoute une animation de transformation */
 }
+
+.language-switcher i:active, 
+.language-switcher img:active {
+  transform: scale(1.2); /* Agrandit légèrement l'icône au clic */
+}
+
 
 /*--------------------------------------------------------------
 # Starter Section Section

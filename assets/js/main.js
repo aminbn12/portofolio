@@ -241,39 +241,38 @@
   });
 
 
-  // Language Switcher
- // Fonction pour changer la langue
-async function changeLanguage(lang) {
-  try {
-    const response = await fetch(`lang/${lang}.json`);
-    const translations = await response.json();
+  // Fonction pour changer la langue
+  async function changeLanguage(lang) {
+   try {
+        const response = await fetch(`lang/${lang}.json`);
+        const translations = await response.json();
 
-    document.querySelectorAll('[data-translate]').forEach(element => {
+      document.querySelectorAll('[data-translate]').forEach(element => {
       const key = element.getAttribute('data-translate');
       element.textContent = translations[key];
     });
 
     // Stocker la langue dans localStorage
-    localStorage.setItem('lang', lang);
-  } catch (error) {
-    console.error('Error loading translation file:', error);
-  }
-}
+      localStorage.setItem('lang', lang);
+    } catch (error) {
+      console.error('Error loading translation file:', error);
+    }
+ }
 
-// Ajouter les écouteurs d'événements pour les drapeaux
-document.getElementById('lang-en').addEventListener('click', () => {
-  changeLanguage('en');
-});
+   // Ajouter des événements de clic pour les drapeaux
+   document.getElementById('lang-en').addEventListener('click', () => {
+       changeLanguage('en');
+    });
 
-document.getElementById('lang-fr').addEventListener('click', () => {
-  changeLanguage('fr');
-});
+   document.getElementById('lang-fr').addEventListener('click', () => {
+       changeLanguage('fr');
+    });
 
-// Charger la langue sauvegardée lors du chargement de la page
-document.addEventListener('DOMContentLoaded', () => {
-  const savedLang = localStorage.getItem('lang') || 'fr'; // 'fr' est la langue par défaut
-  changeLanguage(savedLang);
-});
+  // Charger la langue sauvegardée lors du chargement de la page
+   document.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('lang') || 'fr'; // 'fr' est la langue par défaut
+      changeLanguage(savedLang);
+    });
 
   
   
