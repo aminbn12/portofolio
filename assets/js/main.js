@@ -1,10 +1,4 @@
-/**
-* Template Name: MyResume
-* Template URL: https://bootstrapmade.com/free-html-bootstrap-template-my-resume/
-* Updated: Jun 29 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
+
 
 (function() {
   "use strict";
@@ -234,6 +228,12 @@
     } catch (error) {
       document.querySelector('.error-message').textContent = "Une erreur s'est produite.";
     }
+  });
+  document.querySelectorAll('.social-links a').forEach(link => {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();  // Empêche l'action par défaut
+      window.open(this.href, '_blank');  // Ouvre le lien dans un nouvel onglet
+    });
   });
   
   
