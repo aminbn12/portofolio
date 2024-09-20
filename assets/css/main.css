@@ -1479,7 +1479,7 @@ section,
   margin-top: 20px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
   #game-section canvas {
       width: 100%;
       height: auto;
