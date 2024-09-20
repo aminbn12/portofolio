@@ -1471,13 +1471,14 @@ section,
 }
 
 #game-section canvas {
-  width: 100%;
-  max-width: 600px;  /* Limite la taille maximale du canvas */
-  height: auto;
-  border: 2px solid #FFF;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
   background-color: black;
-  margin-top: 20px;
-}
+} /* border: 2px solid #FFF;*/
 
 @media (max-width: 600px) {
   #game-section canvas {

@@ -162,15 +162,13 @@ function render(){
 
 // Fonction de redimensionnement du canvas pour qu'il soit responsive
 function resizeCanvas() {
-    const aspectRatio = 600 / 400;  // Ratio d'aspect du jeu
-    let canvasWidth = Math.min(window.innerWidth, 600);  // Maximum 600px de large
-    let canvasHeight = canvasWidth / aspectRatio;
-
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    updateElementsSize();  // Mettre à jour les éléments du jeu
+}
     
     updateElementsSize(); // Mettre à jour les éléments du jeu après redimensionnement
-}
+
 
 // Ajuster la taille des éléments après redimensionnement
 function updateElementsSize() {
