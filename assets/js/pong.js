@@ -31,7 +31,7 @@ const user = {
     width : 10,
     height : 100,
     score : 0,
-    color : "#32C36C"  // Couleur bleue de votre projet
+    color : "#0d6efd"  // Remplacer par votre couleur
 }
 
 // Raquette de l'ordinateur
@@ -41,7 +41,7 @@ const com = {
     width : 10,
     height : 100,
     score : 0,
-    color : "#32C36C"  // Couleur bleue de votre projet
+    color : "#0d6efd"  // Remplacer par votre couleur
 }
 
 // Filet
@@ -162,41 +162,36 @@ function render(){
 
 // Fonction de redimensionnement du canvas pour qu'il soit responsive
 function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    updateElementsSize();  // Mettre à jour les éléments du jeu
-}
-    
-    updateElementsSize(); // Mettre à jour les éléments du jeu après redimensionnement
+    const aspectRatio = 600 / 400;  // Ratio d'aspect du jeu
+    let canvasWidth = window.innerWidth > 600 ? 600 : window.innerWidth - 20;
+    let canvasHeight = canvasWidth / aspectRatio;
 
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+}
 
 // Ajuster la taille des éléments après redimensionnement
 function updateElementsSize() {
-    user.height = canvas.height * 0.25;  // Ajuster la taille des raquettes
+    user.height = canvas.height * 0.25;  // Ajuster la taille des raquettes en fonction de la hauteur du canvas
     com.height = canvas.height * 0.25;
-    ball.radius = canvas.width * 0.02;  // Ajuster la taille de la balle
+    ball.radius = canvas.width * 0.02;   // Ajuster la taille de la balle
 }
 
-// Variable pour vérifier si le jeu a commencé
-let gameStarted = false;
-
-// Démarrer le jeu quand la souris entre dans le canvas
-canvas.addEventListener('mouseenter', function() {
-    if (!gameStarted) {
-        gameStarted = true;
-        loop = setInterval(game, 1000 / 50);  // Lancer la boucle de jeu
-    }
+// Redimensionner et mettre à jour les éléments quand la fenêtre est redimensionnée
+window.addEventListener('resize', function() {
+    resizeCanvas();
+    updateElementsSize();  // Mettre à jour les éléments après redimensionnement
 });
 
-// Redimensionner le canvas lorsqu'on redimensionne la fenêtre
-window.addEventListener('resize', resizeCanvas);
-
-// Initialiser les dimensions au chargement de la page
 resizeCanvas();
 updateElementsSize();  // Initialiser les éléments à la bonne taille
 
-// Fonction principale du jeu
+// Lancer le jeu
 function game(){
     update();
     render();
 }
+
+// Boucle principale du jeu
+let framePerSecond = 50;
+let loop = setInterval(game, 1000/framePerSecond);
