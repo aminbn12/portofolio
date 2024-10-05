@@ -1485,6 +1485,15 @@ section,
       height: auto;
   }
 }
+.resume-item {
+  overflow: visible;
+  padding: 0 0 20px 20px;
+  height: auto; /* Ajuster la hauteur à la taille du contenu */
+}
+.container {
+  width: 100%;
+  height: auto; /* S'ajuste à la taille du contenu */
+}
 
 
 
