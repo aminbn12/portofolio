@@ -1468,6 +1468,8 @@ section,
   height: auto;
   padding: 50px 0;
   color: white;
+  width: 100%;
+  overflow: hidden;  /* Empêche tout dépassement inattendu */
   
 }
 
@@ -1495,9 +1497,3 @@ section,
 
 
 
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
-}
