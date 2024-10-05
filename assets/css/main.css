@@ -701,6 +701,7 @@ section,
   margin-top: -2px;
   border-left: 2px solid var(--accent-color);
   position: relative;
+  white-space: normal;
 }
 
 .resume .resume-item h4 {
@@ -1485,15 +1486,12 @@ section,
       height: auto;
   }
 }
-.resume-item {
-  overflow: visible;
-  padding: 0 0 20px 20px;
-  height: auto; /* Ajuster la hauteur à la taille du contenu */
+@media (max-width: 768px) {
+  .resume .resume-item {
+    min-width: 100%;
+  }
 }
-.container {
-  width: 100%;
-  height: auto; /* S'ajuste à la taille du contenu */
-}
+
 
 
 
